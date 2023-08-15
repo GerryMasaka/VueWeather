@@ -1,49 +1,57 @@
 <template>
 <div class="container p-0">
-    <div class="card main-div w-100">
-        <div class="p-3">
-            <h2 class="mb-1 day">Tuesday</h2>
-            <p class="text-light date mb-0">date</p>
-            <small>time</small>
-            <h2 class="place"><i class="fa fa-location">Rio <small>country</small></i></h2>
-            <div class="temp">
-                <h1 class="weather-temp">19&deg;</h1>
-                <h2 class="text-light">description</h2>
+    <div class="d-flex">
+            <div class="card main-div w-100">
+                <div class="p-3">
+                    <h2 class="mb-1 day">Tuesday</h2>
+                    <p class="text-light date mb-0">date</p>
+                    <small>time</small>
+                    <h2 class="place"><i class="fa fa-location">Rio <small>country</small></i></h2>
+                    <div class="temp">
+                        <h1 class="weather-temp">19&deg;</h1>
+                        <h2 class="text-light">description</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="card card-2 w-100">
+            <table class="m-4">
+                <tbody>
+                    <tr>
+                        <th>Sea Level</th>
+                        <td>100</td>
+                    </tr>
+                    <tr>
+                        <th>Sea Level</th>
+                        <td>100</td>
+                    </tr><tr>
+                        <th>Sea Level</th>
+                        <td>100</td>
+                    </tr>
+                </tbody>
+            </table>
+      
+            <DaysWeather></DaysWeather>
+            <div id="div-Form" class="d-flex m-3 justify-content-center">
+                <form action="">
+                    <input type="button" value="change Location" class="btn change-btn btn-primary">
+
+                </form>
             </div>
         </div>
+    
     </div>
-    <div class="card card-2 w-100">
-        <table class="m-4">
-            <tbody>
-                <tr>
-                    <th>Sea Level</th>
-                    <td>100</td>
-                </tr>
-                <tr>
-                    <th>Sea Level</th>
-                    <td>100</td>
-                </tr><tr>
-                    <th>Sea Level</th>
-                    <td>100</td>
-                </tr>
-            </tbody>
-        </table>
-        <div id="div-Form" class="d-flex m-3 justify-content-center">
-            <form action="">
-                <input type="button" value="change Location" class="btn change-btn btn-primary">
-
-            </form>
-        </div>
-    </div>
+    
 </div>
 
    </template>
    
    <script>
+   import DaysWeather from './DaysWeather.vue'
    
    export default (await import('vue')).defineComponent({
     name: 'myWeather',
     components: {
+        DaysWeather,
 
     },
 
@@ -67,7 +75,7 @@
    .card.main-div {
     border-radius: 20px;
     color: antiquewhite;
-    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUKXj3Qy8NkiNeYV98IcyN-1dyyX30MuqdUw&usqp=CAU");
+    background-image: url("https://images.unsplash.com/photo-1580193769210-b8d1c049a7d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=874&q=80");
     background-size: cover;
     background-position: center;
     background-blend-mode: overlay;
@@ -122,6 +130,7 @@
    }
    td{
     text-align: right;
+    /* margin-right: 20px; */
    }
    table,tr:hover{
     color: red;
