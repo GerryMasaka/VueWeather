@@ -3,13 +3,13 @@
     <div class="d-flex">
             <div class="card main-div w-100">
                 <div class="p-3">
-                    <h2 class="mb-1 day">Tuesday</h2>
-                    <p class="text-light date mb-0">date</p>
-                    <small>time</small>
-                    <h2 class="place"><i class="fa fa-location">Rio <small>country</small></i></h2>
+                    <h2 class="mb-1 day">Today</h2>
+                    <p class="text-light date mb-0">{{date}}</p>
+                    <small>{{time}}</small>
+                    <h2 class="place"><i class="fa fa-location">{{ name }} <small>{{ country }}</small></i></h2>
                     <div class="temp">
-                        <h1 class="weather-temp">19&deg;</h1>
-                        <h2 class="text-light">description</h2>
+                        <h1 class="weather-temp">{{temperature}}&deg;</h1>
+                        <h2 class="text-light">{{description}} <img :src="iconUrl"></h2>
                     </div>
                 </div>
             </div>
@@ -18,22 +18,23 @@
                 <tbody>
                     <tr>
                         <th>Sea Level</th>
-                        <td>100</td>
+                        <td v-if="sea_level > 0">{{ sea_level }}</td>
+                        <td v-else>Null</td>
                     </tr>
                     <tr>
-                        <th>Sea Level</th>
-                        <td>100</td>
+                        <th>Humidity</th>
+                        <td>{{ humidity }}</td>
                     </tr><tr>
-                        <th>Sea Level</th>
-                        <td>100</td>
+                        <th>Wind</th>
+                        <td>{{ wind }}</td>
                     </tr>
                 </tbody>
             </table>
       
-            <DaysWeather></DaysWeather>
+            <DaysWeather :cityname="cityname"></DaysWeather>
             <div id="div-Form" class="d-flex m-3 justify-content-center">
                 <form action="">
-                    <input type="button" value="change Location" class="btn change-btn btn-primary">
+                    <input type="button" value="change Location" @click="changeLocation" class="btn change_btn btn-primary">
 
                 </form>
             </div>
@@ -59,12 +60,41 @@
     },
     data(){
         return{
-
+            cityname: this.city,
+            temperature: null,
+            description: null,
+            iconUrl: null,
+            date: null,
+            time: null,
+            name: null,
+            sea_level: null,
+            wind: null,
+            humidity: null,
+            country: null,
+            monthNames: ["January","February","March","April","May","June","July","August","September","October","November", "December"],
+        }
+    },
+    methods: {
+        changeLocation(){
+            window.location.reload();
         }
     },
     async created(){
         const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${this.city}&units=metric&appid=191fb3df2239c3afb0151b7e8e744913`);
-        console.log(response)
+        const weatherData = response.data;
+        this.temperature = Math.round(weatherData.main.temp);
+        this.description= weatherData.weather[0].description;
+        this.name=weatherData.name;
+        this.wind = weatherData.wind.speed;
+        this.sea_level = weatherData.main.sea_level;
+        this.country = weatherData.sys.country;
+        this.humidity = weatherData.main.humidity;
+        this.iconUrl = 'https://openweathermap.org/img/wn/10d@2x.png';
+        
+        const d = new Date();
+        this.date = d.getDate() + '-' + this.monthNames[d.getMonth()] + '-' + d.getFullYear();
+        this.time = d.getHours()+ ':' + d.getMinutes() + ':' + d.getSeconds();
+        console.log(weatherData)
     }
    })
     
