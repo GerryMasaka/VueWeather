@@ -1,24 +1,9 @@
 # weather-app
 
-## Project setup
-```
-npm install
-```
+ VueWeather is a dynamic web application developed using Vue.js, designed to provide users with up-to-date weather information and forecasts for various cities around the world. Leveraging the OpenWeather API, the platform offers a user-friendly interface that empowers users to access current weather conditions as well as short and extended forecasts in a seamless and visually appealing manner.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+##Development
+Vue.js
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+##Api
+The app utilizes OpenWeatherMap to provide weather data
