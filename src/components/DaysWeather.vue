@@ -10,11 +10,9 @@
             
         </ul>
     </div>
-
-
 </template>
    
-   <script>
+<script>
 import axios from 'axios';
 import moment from 'moment';
    
@@ -66,8 +64,6 @@ import moment from 'moment';
             return date.format('ddd');
         }
      }
-
-     
    })
    </script>
    
@@ -119,8 +115,6 @@ import moment from 'moment';
     background: #fff;
     border-radius: 10px;
     color: #191a1f;
-
    }
-   
    </style>
    
